@@ -1,4 +1,4 @@
-﻿/* 
+﻿/*
 Author: W3layouts
 Author URL: http://w3layouts.com
 */
@@ -9557,8 +9557,8 @@ License: https://linearicons.com/free/license
 */
 @font-face {
   font-family: Linearicons-Free;
-  src: url(../../../../../../../../free/1.0.0/Linearicons-Free.eot);
-  src: url(../../../../../../../../free/1.0.0/Linearicons-Free-1.eot) format("embedded-opentype"), url(../../../../../../../../free/1.0.0/Linearicons-Free.woff2) format("woff2"), url(../../../../../../../../free/1.0.0/Linearicons-Free.ttf) format("truetype"), url(../../../../../../../../free/1.0.0/Linearicons-Free.woff) format("woff"), url(../../../../../../../../free/1.0.0/Linearicons-Free.svg) format("svg");
+  src: url(../../../assets/fonts/Linearicons-Free.eot);
+  src: url(../../../assets/fonts/Linearicons-Free.eot) format("embedded-opentype"), url() format("woff2"), url(../../../assets/fonts/Linearicons-Free.ttf) format("truetype"), url(../../../assets/fonts/Linearicons-Free.woff) format("woff"), url(../../../assets/fonts/Linearicons-Free.svg) format("svg");
   font-weight: 400;
   font-style: normal; }
 
@@ -10904,6 +10904,7 @@ footer.dashboard p a:hover {
   left: 0; }
 
 .sticky-sidebar-menu {
+  top: 0px;
   position: fixed;
   height: calc(100% - 44px);
   overflow-y: auto;
@@ -11191,7 +11192,7 @@ li.menu-list.nav-active .lnr-chevron-right {
 
 .sidebar-menu-collapsed .sidebar-menu {
   width: 60px;
-  top: 44px; }
+  top: 0px; }
 
 .sidebar-menu-collapsed .sidebar-menu-inner {
   padding: 0; }
@@ -11403,7 +11404,7 @@ a.toggle-btn i {
 
 .sticky-header {
   position: fixed;
-  top: 44px;
+  top: 0px;
   left: 0px;
   right: 0;
   z-index: 1; }

@@ -20,7 +20,7 @@
 <script src='//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
 
 <meta name="robots" content="noindex">
-<body><link rel="stylesheet" href="/images/demobar_w3_4thDec2019.css">
+<body>
 
 @yield('content')
 </body>

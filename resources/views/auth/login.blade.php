@@ -37,7 +37,7 @@
                         <div class="form-check check-remember check-me-out">
                             <input type="checkbox" class="form-check-input checkbox"  id="exampleCheck1" {{ old('remember') ? 'checked' : '' }}>
                             <label class="form-check-label checkmark" for="exampleCheck1"> {{ __('Remember Me') }}
-                                me</label>
+                                </label>
                         </div>
                         <div class="d-flex align-items-center flex-wrap justify-content-between">
                             <button type="submit" class="btn btn-primary btn-style mt-4"> {{ __('Login Now') }}</button>
