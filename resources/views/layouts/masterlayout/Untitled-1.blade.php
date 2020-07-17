@@ -4,16 +4,17 @@
 
 <head>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-  
-    <title>Collective Admin Panel a Flat Bootstrap Responsive Website Template | Home :: W3Layouts</title>
-  
-    <!-- Template CSS -->
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/style-liberty.css') }}">">
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- CSRF Token -->
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+
+  <title>Collective Admin Panel a Flat Bootstrap Responsive Website Template | Home :: W3Layouts</title>
+
+  <!-- Template CSS -->
+  <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/css/style-liberty.css') }}">
   <!-- google fonts -->
   <link href="//fonts.googleapis.com/css?family=Nunito:300,400,600,700,800,900&display=swap" rel="stylesheet">
   <script src='//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
@@ -52,7 +53,7 @@
 
       <!-- sidebar nav start -->
       <ul class="nav nav-pills nav-stacked custom-nav">
-        <li><router-link to="/dashboard"><i class="fa fa-tachometer"></i><span> Dashboard</span></router-link>
+        <li class="active"><a href="index.html"><i class="fa fa-tachometer"></i><span> Dashboard</span></a>
         </li>
         <li class="menu-list"><a href="#"><i class="fa fa-envelope"></i>
             <span>Mailbox <i class="lnr lnr-chevron-right"></i></span></a>
@@ -210,9 +211,8 @@
     <!--notification menu end -->
   </div>
   <!-- //header-ends -->
-  <router-view></router-view>
-{{--  @yield('content')  --}}
-
+@yield('content')
+<router-view></router-view>
 </section>
   <!--footer section start-->
 <footer class="dashboard">
@@ -245,12 +245,9 @@
   }
 </script>
 <!-- /move top -->
-\
-
 <script src="{{ asset('assets\js\jquery-3.3.1.min.js') }}"></script>
 <script src="{{ asset('assets\js\jquery-1.10.2.min.js') }}"></script>
 
-<
 <!-- data tables js -->
 <script>
   $(document).ready(function () {
@@ -264,9 +261,9 @@
 
 <script src="{{ asset('assets\js\faq.js') }}"></script>
 
+<script src="{{ asset('assets\js\jquery.nicescroll.js') }}"></script>
 
-
-
+<script src="{{ asset('assets\js\scripts.js') }}"></script>
 
 <!-- close script -->
 <script>
@@ -301,11 +298,10 @@
  </script>
  <!--// loading-gif Js -->
 
+
 <!-- Bootstrap Core JavaScript -->
 <script src="{{ asset('js/app.js') }}"></script>
-<script src="{{ asset('assets/js/jquery.dataTables.min.js') }}"></script>
-<script src="{{ asset('assets/js/scripts.js') }}"></script>
-<script src="{{ asset('assets/js/jquery.nicescroll.js') }}"></script>
+<script src="{{ asset('assets\js\jquery.dataTables.min.js') }}"></script>
 </body>
 
 </body></html>

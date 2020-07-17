@@ -10928,3 +10928,7 @@ a.text-dark:focus {
   }
 }
 
+.router-link-exact-active {
+  color: var(--primary) !important;
+}
+
