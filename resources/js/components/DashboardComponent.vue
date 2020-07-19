@@ -65,7 +65,7 @@
           <div class="card card_border p-4">
             <h3 class="card__title mt-2">All Tasks Info</h3>
             <div class="card-tools">
-                <button type="button"  class="btn btn-success float-right" data-toggle="modal" data-target="#addUserModel"> Add New Task <span class="lnr lnr-plus-circle"></span></button></div>
+                <button type="button"  class="btn btn-success float-right" @click="newModel"> Add New Task <span class="lnr lnr-plus-circle"></span></button></div>
             <div class="table table-striped table-responsive-sm">
               <table id="example" class="display table-bordered" style="width:100%">
                 <thead class="thead-primary">
@@ -84,8 +84,8 @@
                     </td>
 
                     <td>
-                        <a href=""><span class="lnr lnr-pencil text-primary" style="font-size:20px;"></span></a>
-                        <a href=""><span class="lnr lnr-cross text-danger" style="font-size:20px;"></span></a>
+                        <a href="#" @click="editModel(task)"><span class="lnr lnr-pencil text-primary" style="font-size:20px;"></span></a>
+                        <a href="#" @click="deleteTask(task.id)"><span class="lnr lnr-cross text-danger" style="font-size:20px;"></span></a>
                     </td>
                   </tr>
                 </tbody>
@@ -247,7 +247,7 @@
   </div>
   <!-- //content -->
   <!-- Modal -->
-                  <div class="modal fade" id="addUserModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                  <div class="modal fade" id="addTaskModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
                       <div class="modal-content">
                         <div class="modal-header">
@@ -256,7 +256,7 @@
                             <span aria-hidden="true">&times;</span>
                           </button>
                         </div>
-                        <form @submit.prevent="createTask" @keydown="form.onKeydown($event)">
+                        <form @submit.prevent="editMode? editTask() : createTask()" @keydown="form.onKeydown($event)">
 
                             <div class="modal-body">
                                 <div class="form-group">
@@ -268,7 +268,8 @@
                             </div>
                             <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                            <button  :disabled="form.busy" type="submit" class="btn btn-success">Save</button>
+                            <button  v-show="editMode" type="submit" class="btn btn-primary">Update</button>
+                            <button v-show="!editMode" type="submit" class="btn btn-success">Save</button>
                             </div>
                         </form>
                       </div>
@@ -281,14 +282,45 @@
     export default {
           data () {
             return {
+            editMode : false,
             tasks: {},
             // Create a new form instance
             form: new Form({
+                id: '',
                 task: ''
             })
             }
      },
     methods: {
+        editTask(){
+            this.$Progress.start();
+            this.form.put('api/user/'+ this.form.id)
+            .then(() =>{
+                swal.fire(
+                    'Updated!',
+                    'Your Task has been Updated.',
+                    'success'
+                    )
+                $("#addTaskModel").modal("hide");
+                Fire.$emit('TaskCreated');
+                this.$Progress.finish();
+            }).catch(()=>{
+                this.$Progress.fail();
+            });
+        },
+        editModel(task){
+            this.editMode = true;
+            $("#exampleModalLongTitle").text('Update Task');
+            this.form.clear();
+            this.form.reset();
+            $("#addTaskModel").modal("show");
+            this.form.fill(task);
+        },
+        newModel(){
+            this.editMode = false;
+            this.form.reset();
+            $("#addTaskModel").modal("show");
+        },
         loadTasks(){
             axios.get('api/user').then(({ data }) =>(this.tasks = data.data))
         },
@@ -296,7 +328,7 @@
             this.form.post('api/user').then(() => {
                 this.$Progress.start();
                 Fire.$emit('TaskCreated');
-                $('#addUserModel').modal('hide');
+                $('#addTaskModel').modal('hide');
                 toast.fire({
                     icon: 'success',
                     title: 'User Created Successfully'
@@ -306,7 +338,33 @@
                 console.log("error");
             });
 
-        }
+        },
+        deleteTask(id){
+            swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+            if (result.value) {
+                // Send Request to Server for delet
+                this.form.delete('api/user/'+id).then(()=> {
+                    swal.fire(
+                    'Deleted!',
+                    'Your Task has been deleted.',
+                    'success'
+                    )
+                    Fire.$emit('TaskCreated');
+                }).catch(()=> {
+                    swal("Failed", "There was Something wrong.", "warning");
+                });
+
+            }
+            })
+        },
     },
         created() {
             // console.log('Component mounted.')

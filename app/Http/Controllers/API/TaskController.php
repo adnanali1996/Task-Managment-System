@@ -28,7 +28,7 @@ class TaskController extends Controller
     {
         //
         $this->validate($request,[
-            "task" => "required|string|max:255|unique:tasks",
+            "task" => "required|string|max:255",
         ]);
         return Task::create([
             "task" => $request["task"],
@@ -57,6 +57,12 @@ class TaskController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $task = task::findOrFail($id);
+        $this->validate($request,[
+            "task" => "required|string|max:255",
+        ]);
+        $task->update($request->all());
+        return ["message" => "Task Updated Successfully."];
     }
 
     /**
@@ -68,5 +74,8 @@ class TaskController extends Controller
     public function destroy($id)
     {
         //
+        $task = Task::findOrFail($id);
+        $task->delete();
+        return ['message' => 'Task Has Been Deleted'];
     }
 }

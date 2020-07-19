@@ -55,6 +55,7 @@ const toast = Swal.mixin({
     }
   })
 window.toast = toast;
+window.swal = Swal;
 // SWEET ALERTS END
 // VUE EVENTS START
 window.Fire = new Vue();
