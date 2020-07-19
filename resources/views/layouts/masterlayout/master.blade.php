@@ -8,9 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-  
+
     <title>Collective Admin Panel a Flat Bootstrap Responsive Website Template | Home :: W3Layouts</title>
-  
+
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style-liberty.css') }}">">
@@ -209,8 +209,10 @@
     </div>
     <!--notification menu end -->
   </div>
-  <!-- //header-ends -->
-  <router-view></router-view>
+   <!-- //header-ends -->
+   <router-view></router-view>
+    <!-- set progressbar -->
+    <vue-progress-bar></vue-progress-bar>
 {{--  @yield('content')  --}}
 
 </section>
@@ -252,11 +254,11 @@
 
 <
 <!-- data tables js -->
-<script>
+<!--<script>
   $(document).ready(function () {
     $('#example').DataTable();
   });
-</script>
+</script>-->
 <!-- //data tables js -->
 
 
@@ -303,7 +305,7 @@
 
 <!-- Bootstrap Core JavaScript -->
 <script src="{{ asset('js/app.js') }}"></script>
-<script src="{{ asset('assets/js/jquery.dataTables.min.js') }}"></script>
+{{-- <script src="{{ asset('assets/js/jquery.dataTables.min.js') }}"></script> --}}
 <script src="{{ asset('assets/js/scripts.js') }}"></script>
 <script src="{{ asset('assets/js/jquery.nicescroll.js') }}"></script>
 </body>

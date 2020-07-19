@@ -8,8 +8,14 @@ require('./bootstrap');
 
 // VUE
 window.Vue = require('vue');
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import { Form, HasError, AlertError } from 'vform';
+
+window.Form = Form;
+Vue.component(HasError.name, HasError)
+Vue.component(AlertError.name, AlertError)
+// VUE ROUTER START
 Vue.use(VueRouter)
 
 let routes = [
@@ -22,7 +28,41 @@ let routes = [
     mode:'history',
     routes // short for `routes: routes`
   })
+// VUE ROUTER END
 
+// VUE PROGRASS BAR START
+import VueProgressBar from 'vue-progressbar';
+
+Vue.use(VueProgressBar, {
+  color: 'rgb(143, 255, 199)',
+  failedColor: 'red',
+  height: '5px'
+})
+// VUE PROGRASS BAR END
+
+// SWEET ALERTS START
+import Swal from 'sweetalert2';
+
+const toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    onOpen: (toast) => {
+      toast.addEventListener('mouseenter', Swal.stopTimer)
+      toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  })
+window.toast = toast;
+// SWEET ALERTS END
+// VUE EVENTS START
+window.Fire = new Vue();
+// VUE EVENTS END
+//   VUe Filters
+Vue.filter('upText', function(text){
+    return text.charAt(0).toUpperCase() + text.slice(1)
+});
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue

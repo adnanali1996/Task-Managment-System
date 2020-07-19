@@ -63,150 +63,30 @@
       <div class="row">
         <div class="col-lg-12 mb-4">
           <div class="card card_border p-4">
-            <h3 class="card__title position-absolute">All Employees Info</h3>
-            <div class="table-responsive">
-              <table id="example" class="display" style="width:100%">
-                <thead>
+            <h3 class="card__title mt-2">All Tasks Info</h3>
+            <div class="card-tools">
+                <button type="button"  class="btn btn-success float-right" data-toggle="modal" data-target="#addUserModel"> Add New Task <span class="lnr lnr-plus-circle"></span></button></div>
+            <div class="table table-striped table-responsive-sm">
+              <table id="example" class="display table-bordered" style="width:100%">
+                <thead class="thead-primary">
                   <tr>
-                    <th>Emp. Name</th>
-                    <th>Designation</th>
-                    <th>Joining date</th>
-                    <th>Emp. Status</th>
+                    <th>Tasks</th>
+                    <th>Status</th>
+                    <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td><img src="assets\images\avatar1.jpg'" class="rounded-circle mr-2" width="40px" alt="">
-                      Johnson</td>
-                    <td>Corporate Business Theme</td>
-                    <td>06/01/2020</td>
-                    <td><span class="badge badge-success">Success</span></td>
-                  </tr>
-                  <tr>
-                    <td><img src="assets\images\avatar1.jpg" class="rounded-circle mr-2" width="40px" alt="">
-                      Elexa ker</td>
-                    <td>HR operations</td>
-                    <td>07/01/2020</td>
-                    <td><span class="badge badge-success">Active</span></td>
-                  </tr>
-                  <tr>
-                    <td><img src="assets\images\avatar5.jpg" class="rounded-circle mr-2" width="40px" alt="">
-                      Alexander</td>
-                    <td>Interior web design</td>
-                    <td>08/01/2020</td>
-                    <td><span class="badge badge-warning">In active</span></td>
-                  </tr>
-                  <tr>
-                    <td><img src="assets\images\avatar4.jpg" class="rounded-circle mr-2" width="40px" alt="">
-                      Smith Kelly</td>
-                    <td>Personal portfolio</td>
-                    <td>09/01/2020</td>
-                    <td><span class="badge badge-danger">Processing</span></td>
-                  </tr>
-                  <tr>
-                    <td><img src="assets\images\avatar5.jpg" class="rounded-circle mr-2" width="40px" alt="">
-                      Elizabeth</td>
-                    <td>Agriculture and farming</td>
-                    <td>06/01/2020</td>
-                    <td><span class="badge badge-success">Active</span></td>
-                  </tr>
-                  <tr>
-                    <td><img src="assets\images\avatar6.jpg" class="rounded-circle mr-2" width="40px" alt="">
-                      Williamson</td>
-                    <td>Integration Specialist</td>
-                    <td>07/01/2020</td>
-                    <td><span class="badge badge-success">Success</span></td>
-                  </tr>
-                  <tr>
-                    <td><img src="assets\images\avatar7.jpg" class="rounded-circle mr-2" width="40px" alt="">
-                      Thomas</td>
-                    <td>Sales Assistant</td>
-                    <td>08/01/2020</td>
-                    <td><span class="badge badge-success">Success</span></td>
-                  </tr>
-                  <tr>
-                    <td><img src="assets\images\avatar2.jpg" class="rounded-circle mr-2" width="40px" alt="">
-                      Davidson</td>
-                    <td>Integration Specialist</td>
-                    <td>09/01/2020</td>
-                    <td><span class="badge badge-warning">In active</span></td>
-                  </tr>
-                  <tr>
-                    <td><img src="assets\images\avatar2.jpg" class="rounded-circle mr-2" width="40px" alt="">
-                      Michael</td>
-                    <td>Javascript Developer</td>
-                    <td>06/01/2020</td>
-                    <td><span class="badge badge-success">Success</span></td>
-                  </tr>
-                  <tr>
-                    <td><img src="assets\images\avatar3.jpg" class="rounded-circle mr-2" width="40px" alt="">
-                      Margaret</td>
-                    <td>Software Engineer</td>
-                    <td>07/01/2020</td>
-                    <td><span class="badge badge-success">Success</span></td>
-                  </tr>
-                  <tr>
-                    <td><img src="assets\images\avatar4.jpg" class="rounded-circle mr-2" width="40px" alt="">
-                      Charlotte</td>
-                    <td>Office Manager</td>
-                    <td>08/01/2020</td>
-                    <td><span class="badge badge-warning">In active</span></td>
-                  </tr>
-                  <tr>
-                    <td><img src="assets\images\avatar5.jpg" class="rounded-circle mr-2" width="40px" alt="">
-                      Isabella</td>
-                    <td>Support Lead</td>
-                    <td>09/01/2020</td>
-                    <td><span class="badge badge-success">Success</span></td>
-                  </tr>
-                  <tr>
-                    <td><img src="assets\images\avatar6.jpg" class="rounded-circle mr-2" width="40px" alt="">
-                      Victoria</td>
-                    <td>Regional Director</td>
-                    <td>06/01/2020</td>
-                    <td><span class="badge badge-success">Success</span></td>
-                  </tr>
-                  <tr>
-                    <td><img src="assets\images\avatar7.jpg" class="rounded-circle mr-2" width="40px" alt="">
-                      Wilson</td>
-                    <td>Senior Marketing Designer</td>
-                    <td>07/01/2020</td>
-                    <td><span class="badge badge-success">Success</span></td>
-                  </tr>
-                  <tr>
-                    <td><img src="assets\images\avatar1.jpg" class="rounded-circle mr-2" width="40px" alt="">
-                      Jessica</td>
-                    <td>Regional Director</td>
-                    <td>08/01/2020</td>
-                    <td><span class="badge badge-success">Success</span></td>
-                  </tr>
-                  <tr>
-                    <td><img src="assets\images\avatar2.jpg" class="rounded-circle mr-2" width="40px" alt="">
-                      Michael</td>
-                    <td>Marketing Designer</td>
-                    <td>09/01/2020</td>
-                    <td><span class="badge badge-warning">In active</span></td>
-                  </tr>
-                  <tr>
-                    <td><img src="assets\images\avatar3.jpg" class="rounded-circle mr-2" width="40px" alt="">
-                      Anderson</td>
-                    <td>Chief Financial Officer (CFO)</td>
-                    <td>06/01/2020</td>
-                    <td><span class="badge badge-warning">In active</span></td>
-                  </tr>
-                  <tr>
-                    <td><img src="assets\images\avatar4.jpg" class="rounded-circle mr-2" width="40px" alt="">
-                      Gloria</td>
-                    <td>Systems Administrator</td>
-                    <td>07/01/2020</td>
-                    <td><span class="badge badge-warning">In active</span></td>
-                  </tr>
-                  <tr>
-                    <td><img src="assets\images\avatar5.jpg" class="rounded-circle mr-2" width="40px" alt="">
-                      Taylor</td>
-                    <td>Software Engineer</td>
-                    <td>08/01/2020</td>
-                    <td><span class="badge badge-warning">In active</span></td>
+                  <tr v-for="task in tasks" :key="task.id">
+                    <td>{{ task.task | upText }}</td>
+                    <td>
+                        <button class="btn btn-danger" v-if="task.completed==0"> Marks as Complete</button>
+                        <button class="btn btn-success" v-if="task.completed==1"> Completed</button>
+                    </td>
+
+                    <td>
+                        <a href=""><span class="lnr lnr-pencil text-primary" style="font-size:20px;"></span></a>
+                        <a href=""><span class="lnr lnr-cross text-danger" style="font-size:20px;"></span></a>
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -366,13 +246,74 @@
 
   </div>
   <!-- //content -->
+  <!-- Modal -->
+                  <div class="modal fade" id="addUserModel" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <form @submit.prevent="createTask" @keydown="form.onKeydown($event)">
+
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label>Task</label>
+                                    <input v-model="form.task" type="text" name="task"
+                                        class="form-control" :class="{ 'is-invalid': form.errors.has('task') }">
+                                    <has-error :form="form" field="task"></has-error>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            <button  :disabled="form.busy" type="submit" class="btn btn-success">Save</button>
+                            </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
 </div>
 </template>
 
 <script>
     export default {
-        mounted() {
-            console.log('Component mounted.')
+          data () {
+            return {
+            tasks: {},
+            // Create a new form instance
+            form: new Form({
+                task: ''
+            })
+            }
+     },
+    methods: {
+        loadTasks(){
+            axios.get('api/user').then(({ data }) =>(this.tasks = data.data))
+        },
+        createTask(){
+            this.form.post('api/user').then(() => {
+                this.$Progress.start();
+                Fire.$emit('TaskCreated');
+                $('#addUserModel').modal('hide');
+                toast.fire({
+                    icon: 'success',
+                    title: 'User Created Successfully'
+                })
+                this.$Progress.finish();
+            }).catch(() => {
+                console.log("error");
+            });
+
+        }
+    },
+        created() {
+            // console.log('Component mounted.')
+            this.loadTasks();
+            Fire.$on('TaskCreated', () => {
+                this.loadTasks()
+            });
         }
     }
 </script>

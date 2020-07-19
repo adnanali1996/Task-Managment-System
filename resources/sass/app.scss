@@ -9,5 +9,11 @@
 
 .router-link-exact-active{
     color: var(--primary) !important;
-   
+
+}
+
+.thead-primary{
+    color: #fff;
+    background-color: var(--primary);
+    border-color: #4755ab;
 }
