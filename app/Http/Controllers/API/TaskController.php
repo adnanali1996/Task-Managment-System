@@ -7,6 +7,13 @@ use Illuminate\Http\Request;
 Use App\Task;
 class TaskController extends Controller
 {
+
+
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +22,7 @@ class TaskController extends Controller
     public function index()
     {
         //
-        return Task::latest()->paginate(10);
+        return Task::latest()->paginate(7);
     }
 
     /**
@@ -77,5 +84,23 @@ class TaskController extends Controller
         $task = Task::findOrFail($id);
         $task->delete();
         return ['message' => 'Task Has Been Deleted'];
+    }
+
+    // MARK TASK AS COMPLETED
+    public function markCompleted($id)
+    {
+        $task = Task::findOrFail($id);
+        $task->completed = 1;
+        $task->save();
+        return ['message' => 'Completed'];
+    }
+
+    // MARK TASK AS INCOMPLTED
+    public function markIncompleted($id)
+    {
+        $task = Task::findOrFail($id);
+        $task->completed = 0;
+        $task->save();
+        return ['message' => 'Incompleted'];
     }
 }

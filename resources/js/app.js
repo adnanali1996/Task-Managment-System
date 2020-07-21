@@ -9,12 +9,19 @@ require('./bootstrap');
 // VUE
 window.Vue = require('vue');
 import Vue from 'vue';
-import VueRouter from 'vue-router';
+
+// FOR PAGINATION STARTS
+Vue.component('pagination', require('laravel-vue-pagination'));
+// FOR PAGINATION ENDS
+
+// FOR  VFORM START
 import { Form, HasError, AlertError } from 'vform';
 
 window.Form = Form;
 Vue.component(HasError.name, HasError)
 Vue.component(AlertError.name, AlertError)
+// FOR  VFORM START
+import VueRouter from 'vue-router';
 // VUE ROUTER START
 Vue.use(VueRouter)
 

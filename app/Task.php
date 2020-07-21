@@ -10,4 +10,10 @@ class Task extends Model
     protected $fillable = [
         'task', 'completed',
     ];
+
+    // USER MAY HAVE MANY TASKS
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
 }

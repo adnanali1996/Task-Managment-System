@@ -67,7 +67,8 @@
             <div class="card-tools">
                 <button type="button"  class="btn btn-success float-right" @click="newModel"> Add New Task <span class="lnr lnr-plus-circle"></span></button></div>
             <div class="table table-striped table-responsive-sm">
-              <table id="example" class="display table-bordered" style="width:100%">
+            <h3 class="card__title mt-2" v-show="!tasks">Currentlly You Dont Have any Tasks</h3>
+              <table id="example" class="display table-bordered" v-show="tasks" style="width:100%">
                 <thead class="thead-primary">
                   <tr>
                     <th>Tasks</th>
@@ -76,11 +77,11 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="task in tasks" :key="task.id">
+                  <tr v-for="task in tasks.data" :key="task.id">
                     <td>{{ task.task | upText }}</td>
                     <td>
-                        <button class="btn btn-danger" v-if="task.completed==0"> Marks as Complete</button>
-                        <button class="btn btn-success" v-if="task.completed==1"> Completed</button>
+                        <button class="btn btn-danger" v-if="task.completed==0" @click="markCompleted(task.id)"> Marks as Complete</button>
+                        <button class="btn btn-success" v-if="task.completed==1" @click="markIncompleted(task.id)"> Completed</button>
                     </td>
 
                     <td>
@@ -91,6 +92,9 @@
                 </tbody>
               </table>
             </div>
+            <div>
+                <pagination :data="tasks" @pagination-change-page="getResults"></pagination>
+          </div>
           </div>
         </div>
       </div>
@@ -292,6 +296,35 @@
             }
      },
     methods: {
+        // THIS FUNCTION IS USED FOR TASKS PAGINATIONS
+        getResults(page=1){
+            axios.get('api/user?page=' + page)
+				.then(response => {
+					this.tasks = response.data;
+				});
+        },
+        markCompleted(id){
+            console.log('Completed');
+            axios.get('api/completed/'+id).then(()=>{
+                swal.fire(
+                    'Task Completed!',
+                    'Your Task has been Completed.',
+                    'success'
+                    )
+                    Fire.$emit('TaskCreated');
+                });
+        },
+        markIncompleted(id){
+            console.log('Incompleted');
+            axios.get('api/incompleted/'+id).then(() => {
+                swal.fire(
+                    'Task Incompleted!',
+                    'Your Task has been marked as incompleted.',
+                    'error'
+                    )
+                    Fire.$emit('TaskCreated');
+            });
+        },
         editTask(){
             this.$Progress.start();
             this.form.put('api/user/'+ this.form.id)
@@ -322,7 +355,7 @@
             $("#addTaskModel").modal("show");
         },
         loadTasks(){
-            axios.get('api/user').then(({ data }) =>(this.tasks = data.data))
+            axios.get('api/user').then(({ data }) =>(this.tasks = data));
         },
         createTask(){
             this.form.post('api/user').then(() => {

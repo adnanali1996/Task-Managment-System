@@ -61,6 +61,8 @@
             <li><router-link to="/compose">Compose Mail</router-link></li>
           </ul>
         </li>
+        <li><router-link to="/profile"><i class="fa fa-user"></i><span> Profile</span></router-link>
+        </li>
         <li class="menu-list"><a href="#"><i class="fa fa-user"></i>
             <span>User <i class="lnr lnr-chevron-right"></i></span></a>
           <ul class="sub-menu-list">
