@@ -18,7 +18,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResources(['user' => 'API\TaskController']);
+Route::apiResources(['task' => 'API\TaskController']);
+// FOR SEARCHING TASKS
+Route::get('searchtask', 'API\TaskController@search')->name("search_task");
 Route::get('profile', 'API\UserController@profile')->name('user_profile');
 // MARK TASK AS COMPLTED
 Route::get('completed/{id}', 'API\TaskController@markCompleted')->name('MarkCompleted');

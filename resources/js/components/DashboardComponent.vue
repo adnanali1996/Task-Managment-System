@@ -298,7 +298,7 @@
     methods: {
         // THIS FUNCTION IS USED FOR TASKS PAGINATIONS
         getResults(page=1){
-            axios.get('api/user?page=' + page)
+            axios.get('api/task?page=' + page)
 				.then(response => {
 					this.tasks = response.data;
 				});
@@ -327,7 +327,7 @@
         },
         editTask(){
             this.$Progress.start();
-            this.form.put('api/user/'+ this.form.id)
+            this.form.put('api/task/'+ this.form.id)
             .then(() =>{
                 swal.fire(
                     'Updated!',
@@ -355,10 +355,10 @@
             $("#addTaskModel").modal("show");
         },
         loadTasks(){
-            axios.get('api/user').then(({ data }) =>(this.tasks = data));
+            axios.get('api/task').then(({ data }) =>(this.tasks = data));
         },
         createTask(){
-            this.form.post('api/user').then(() => {
+            this.form.post('api/task').then(() => {
                 this.$Progress.start();
                 Fire.$emit('TaskCreated');
                 $('#addTaskModel').modal('hide');
@@ -384,7 +384,7 @@
             }).then((result) => {
             if (result.value) {
                 // Send Request to Server for delet
-                this.form.delete('api/user/'+id).then(()=> {
+                this.form.delete('api/task/'+id).then(()=> {
                     swal.fire(
                     'Deleted!',
                     'Your Task has been deleted.',
@@ -401,6 +401,17 @@
     },
         created() {
             // console.log('Component mounted.')
+            Fire.$on('Searching', ()=>{
+                // console.log('Searching');
+                let query = this.$parent.search;
+                axios.get('api/searchtask?q=' + query)
+                .then((data)=>{
+                    this.tasks = data.data;
+                })
+                .catch(()=>{
+
+                });
+            });
             this.loadTasks();
             Fire.$on('TaskCreated', () => {
                 this.loadTasks()

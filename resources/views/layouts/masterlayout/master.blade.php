@@ -89,9 +89,9 @@
     <div class="menu-right">
       <div class="navbar user-panel-top">
         <div class="search-box">
-          <form action="#search-results.html" method="get">
-            <input class="search-input" placeholder="Search Here..." type="search" id="search">
-            <button class="search-submit" value=""><span class="fa fa-search"></span></button>
+          <form  method="get">
+            <input class="search-input" placeholder="Search Here..." type="search" v-model="search" id="search" @keyup="searchit()">
+            <button class="search-submit" value="" @click.prevent=""><span class="fa fa-search"></span></button>
           </form>
         </div>
         <div class="user-dropdown-details d-flex">

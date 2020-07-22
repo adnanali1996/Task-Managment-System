@@ -5,6 +5,11 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 Use App\Task;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
+
+use function GuzzleHttp\Promise\queue;
+
 class TaskController extends Controller
 {
 
@@ -52,6 +57,31 @@ class TaskController extends Controller
     public function show($id)
     {
         //
+    }
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function search()
+    {
+        $query =\Request::get('q');
+
+        //dd('dfd');
+        // $query = $request->get('q');
+        // dd($query);
+        // return $query;
+        if(!empty($query))
+        {
+
+            $tasks = DB::table('tasks')->where('task', 'LIKE', "%$query%")->paginate(5);
+        }
+        else
+        {
+            $tasks= Task::latest()->paginate(7);
+        }
+        return $tasks;
     }
 
     /**

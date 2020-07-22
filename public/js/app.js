@@ -2243,7 +2243,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
-      axios.get('api/user?page=' + page).then(function (response) {
+      axios.get('api/task?page=' + page).then(function (response) {
         _this.tasks = response.data;
       });
     },
@@ -2265,7 +2265,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       this.$Progress.start();
-      this.form.put('api/user/' + this.form.id).then(function () {
+      this.form.put('api/task/' + this.form.id).then(function () {
         swal.fire('Updated!', 'Your Task has been Updated.', 'success');
         $("#addTaskModel").modal("hide");
         Fire.$emit('TaskCreated');
@@ -2291,7 +2291,7 @@ __webpack_require__.r(__webpack_exports__);
     loadTasks: function loadTasks() {
       var _this3 = this;
 
-      axios.get('api/user').then(function (_ref) {
+      axios.get('api/task').then(function (_ref) {
         var data = _ref.data;
         return _this3.tasks = data;
       });
@@ -2299,7 +2299,7 @@ __webpack_require__.r(__webpack_exports__);
     createTask: function createTask() {
       var _this4 = this;
 
-      this.form.post('api/user').then(function () {
+      this.form.post('api/task').then(function () {
         _this4.$Progress.start();
 
         Fire.$emit('TaskCreated');
@@ -2328,7 +2328,7 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (result) {
         if (result.value) {
           // Send Request to Server for delet
-          _this5.form["delete"]('api/user/' + id).then(function () {
+          _this5.form["delete"]('api/task/' + id).then(function () {
             swal.fire('Deleted!', 'Your Task has been deleted.', 'success');
             Fire.$emit('TaskCreated');
           })["catch"](function () {
@@ -2342,6 +2342,13 @@ __webpack_require__.r(__webpack_exports__);
     var _this6 = this;
 
     // console.log('Component mounted.')
+    Fire.$on('Searching', function () {
+      // console.log('Searching');
+      var query = _this6.$parent.search;
+      axios.get('api/searchtask?q=' + query).then(function (data) {
+        _this6.tasks = data.data;
+      })["catch"](function () {});
+    });
     this.loadTasks();
     Fire.$on('TaskCreated', function () {
       _this6.loadTasks();
@@ -2589,11 +2596,15 @@ __webpack_require__.r(__webpack_exports__);
     console.log('Component mounted.');
   },
   methods: {
+    getProfilePic: function getProfilePic() {
+      var prefix = this.form.photo.match(/\//) ? '' : '/assets/images/profiles/';
+      return prefix + this.form.photo;
+    },
     updateProfile: function updateProfile() {
       var _this = this;
 
       this.$Progress.start();
-      this.form.put('api/profile').then(function () {
+      this.form.put('api/profile').then(function (msg) {
         swal.fire('Updated!', 'Your profile has been Updated.', 'success');
 
         _this.$Progress.finish();
@@ -44680,7 +44691,22 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _vm._m(0),
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12 mt-5" }, [
+        _c("div", { staticClass: "card card-widget widget-user" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "widget-user-image" }, [
+            _c("img", {
+              staticClass: "img-circle",
+              attrs: { src: _vm.getProfilePic(), alt: "User Avatar" }
+            })
+          ]),
+          _vm._v(" "),
+          _vm._m(1)
+        ])
+      ])
+    ]),
     _vm._v(" "),
     _c("div", { staticClass: "card card_border py-2 mb-4" }, [
       _c("div", { staticClass: "card-body" }, [
@@ -44923,72 +44949,55 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-12 mt-5" }, [
-        _c("div", { staticClass: "card card-widget widget-user" }, [
-          _c(
-            "div",
-            {
-              staticClass: "widget-user-header text-white",
-              staticStyle: {
-                background: "url('./assets/images/photo1.png') center center"
-              }
-            },
-            [
-              _c("h3", { staticClass: "widget-user-username text-right" }, [
-                _vm._v("Elizabeth Pierce")
-              ]),
-              _vm._v(" "),
-              _c("h5", { staticClass: "widget-user-desc text-right" }, [
-                _vm._v("Web Designer")
-              ])
-            ]
-          ),
-          _vm._v(" "),
-          _c("div", { staticClass: "widget-user-image" }, [
-            _c("img", {
-              staticClass: "img-circle",
-              attrs: { src: "/assets/images/profile.jpg", alt: "User Avatar" }
-            })
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "card-footer" }, [
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-sm-4 border-right" }, [
-                _c("div", { staticClass: "description-block" }, [
-                  _c("h5", { staticClass: "description-header" }, [
-                    _vm._v("3,200")
-                  ]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "description-text" }, [
-                    _vm._v("SALES")
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-4 border-right" }, [
-                _c("div", { staticClass: "description-block" }, [
-                  _c("h5", { staticClass: "description-header" }, [
-                    _vm._v("13,000")
-                  ]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "description-text" }, [
-                    _vm._v("FOLLOWERS")
-                  ])
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-sm-4" }, [
-                _c("div", { staticClass: "description-block" }, [
-                  _c("h5", { staticClass: "description-header" }, [
-                    _vm._v("35")
-                  ]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "description-text" }, [
-                    _vm._v("PRODUCTS")
-                  ])
-                ])
-              ])
+    return _c(
+      "div",
+      {
+        staticClass: "widget-user-header text-white",
+        staticStyle: {
+          background: "url('./assets/images/photo1.png') center center"
+        }
+      },
+      [
+        _c("h3", { staticClass: "widget-user-username text-right" }, [
+          _vm._v("Elizabeth Pierce")
+        ]),
+        _vm._v(" "),
+        _c("h5", { staticClass: "widget-user-desc text-right" }, [
+          _vm._v("Web Designer")
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card-footer" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-sm-4 border-right" }, [
+          _c("div", { staticClass: "description-block" }, [
+            _c("h5", { staticClass: "description-header" }, [_vm._v("3,200")]),
+            _vm._v(" "),
+            _c("span", { staticClass: "description-text" }, [_vm._v("SALES")])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-sm-4 border-right" }, [
+          _c("div", { staticClass: "description-block" }, [
+            _c("h5", { staticClass: "description-header" }, [_vm._v("13,000")]),
+            _vm._v(" "),
+            _c("span", { staticClass: "description-text" }, [
+              _vm._v("FOLLOWERS")
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-sm-4" }, [
+          _c("div", { staticClass: "description-block" }, [
+            _c("h5", { staticClass: "description-header" }, [_vm._v("35")]),
+            _vm._v(" "),
+            _c("span", { staticClass: "description-text" }, [
+              _vm._v("PRODUCTS")
             ])
           ])
         ])
@@ -60314,7 +60323,16 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('example-component', __webp
 
 var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   el: '#app',
-  router: router
+  router: router,
+  data: {
+    search: ""
+  },
+  methods: {
+    searchit: _.debounce(function () {
+      console.log('search');
+      Fire.$emit('Searching');
+    }, 1000)
+  }
 });
 
 /***/ }),

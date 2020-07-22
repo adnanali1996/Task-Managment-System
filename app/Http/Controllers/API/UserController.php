@@ -106,7 +106,7 @@ class UserController extends Controller
             $user->password = $request->password;
         }
         $user->save();
-        return ['msg' => $user];
+        return ['msg' => $request->photo];
     }
 
     /**
